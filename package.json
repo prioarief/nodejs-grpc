@@ -1,0 +1,20 @@
+{
+  "name": "node-grpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.7.4",
+    "express": "^4.18.2",
+    "grpc": "^1.24.11",
+    "prettier": "^2.8.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
