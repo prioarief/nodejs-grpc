@@ -33,35 +33,41 @@ app.post('/save', (req, res) => {
 	};
 
 	client.insert(newCustomer, (err, data) => {
-		if (err) throw err;
+		if (err) return res.status(400).json({ message: err.message });
 
-		console.log('Customer created successfully', data);
-		res.redirect('/');
+		res.status(201).json({
+			message: 'Customer created successfully',
+			data,
+		});
 	});
 });
 
-app.post('/update', (req, res) => {
+app.put('/update/:id', (req, res) => {
 	const updateCustomer = {
-		id: req.body.id,
+		id: req.params.id,
 		name: req.body.name,
 		age: req.body.age,
 		address: req.body.address,
 	};
 
 	client.update(updateCustomer, (err, data) => {
-		if (err) throw err;
+		if (err) return res.status(400).json({ message: err.message });
 
-		console.log('Customer updated successfully', data);
-		res.redirect('/');
+		res.status(200).json({
+			message: 'Customer updated successfully',
+			data,
+		});
 	});
 });
 
-app.post('/remove', (req, res) => {
-	client.remove({ id: req.body.customer_id }, (err, _) => {
-		if (err) throw err;
+app.delete('/remove/:id', (req, res) => {
+	client.remove({ id: req.params.id }, (err, _) => {
+		if (err) return res.status(400).json({ message: err.message });
 
-		console.log('Customer removed successfully');
-		res.redirect('/');
+		res.status(200).json({
+			message: 'Customer removed successfully',
+			data: null,
+		});
 	});
 });
 
